@@ -1,0 +1,27 @@
+# Ignore Streamlit cache and temporary files
+.streamlit/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore Python virtual environments
+venv/
+.env
+.venv/
+env/
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore log files
+*.log
+
+# Ignore OS-generated files
+.DS_Store
+Thumbs.db
+
+# Ignore secrets (if using API keys, environment variables)
+.env
+*.secret
+

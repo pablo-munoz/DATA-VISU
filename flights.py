@@ -7,15 +7,27 @@ import random
 
 st.title("Airline Passengers Analysis: Which Year Had the Highest Traffic?")
 
-
 question = "Which year had the highest total number of airline passengers?"
 st.subheader(question)
 
-sheet_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSPXm7zEdLojSaqt6ZSswfx5mFEWqKXTGAD1jG07K5wsP-WEQT9wlRNV8a1N6vWkY3nxxZsyuIqPu9J/pub?output=csv"
-flights_df = pd.read_csv(sheet_url)
+# Google Sheet URL (published as CSV)
+SHEET_URL = st.secrets["SHEET_URL"]
+
+# Function to load data with caching
+@st.cache_data(ttl=300)  # Cache refreshes every 5 minutes
+def load_data():
+    return pd.read_csv(SHEET_URL)
+
+# Load the data
+flights_df = load_data()
+
 # Prepare data: aggregate total passengers per year
 yearly_passengers = flights_df.groupby('year')['passengers'].sum().reset_index()
 
+# Manual refresh button
+if st.button("Refresh Data"):
+    st.cache_data.clear()  # Clear cache
+    st.rerun()  # Reload the app
 
 if 'chart_type' not in st.session_state:
     st.session_state.chart_type = None

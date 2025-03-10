@@ -14,7 +14,7 @@ st.subheader(question)
 
 # Google Sheet URL (published as CSV)
 SHEET_URL = st.secrets["SHEET_URL"]
-conn = st.connection("gsheets", type=GSheetsConnection)
+conn = st.connection("gsheets", type= GSheetsConnection)
 flights_df = conn.read()
 
 # Prepare data: aggregate total passengers per year

@@ -12,8 +12,6 @@ st.title("Airline Passengers Analysis: Which Year Had the Highest Traffic?")
 question = "Which year had the highest total number of airline passengers?"
 st.subheader(question)
 
-# Google Sheet URL (published as CSV)
-SHEET_URL = st.secrets["SHEET_URL"]
 conn = st.connection("gsheets", type= GSheetsConnection)
 flights_df = conn.read()
 

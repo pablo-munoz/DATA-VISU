@@ -4,7 +4,9 @@ import seaborn as sns
 import plotly.express as px
 import time
 import random
+import os
 
+st.write("Secrets Loaded:", st.secrets)
 st.title("Airline Passengers Analysis: Which Year Had the Highest Traffic?")
 
 question = "Which year had the highest total number of airline passengers?"

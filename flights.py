@@ -5,8 +5,8 @@ import plotly.express as px
 import time
 import random
 import os
+from streamlit_gsheets import GSheetsConnection
 
-st.write("Secrets Loaded:", st.secrets)
 st.title("Airline Passengers Analysis: Which Year Had the Highest Traffic?")
 
 question = "Which year had the highest total number of airline passengers?"
@@ -14,14 +14,8 @@ st.subheader(question)
 
 # Google Sheet URL (published as CSV)
 SHEET_URL = st.secrets["SHEET_URL"]
-
-# Function to load data with caching
-@st.cache_data(ttl=300)  # Cache refreshes every 5 minutes
-def load_data():
-    return pd.read_csv(SHEET_URL)
-
-# Load the data
-flights_df = load_data()
+conn = st.connection("gsheets", type=GSheetsConnection)
+flights_df = conn.read()
 
 # Prepare data: aggregate total passengers per year
 yearly_passengers = flights_df.groupby('year')['passengers'].sum().reset_index()

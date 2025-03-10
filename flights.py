@@ -11,13 +11,12 @@ st.title("Airline Passengers Analysis: Which Year Had the Highest Traffic?")
 
 question = "Which year had the highest total number of airline passengers?"
 st.subheader(question)
-spreadsheet_url = st.secrets["spreadsheet"]
 
 # Create a connection object using Streamlit connections
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 # Specify the spreadsheet when calling read()
-flights_df = conn.read(spreadsheet=spreadsheet_url)
+flights_df = conn.read()
 
 
 # Prepare data: aggregate total passengers per year

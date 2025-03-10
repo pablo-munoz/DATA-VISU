@@ -11,7 +11,7 @@ st.title("Airline Passengers Analysis: Which Year Had the Highest Traffic?")
 
 question = "Which year had the highest total number of airline passengers?"
 st.subheader(question)
-spreadsheet_url = st.secrets["connections"]["gsheets"]["spreadsheet"]
+spreadsheet_url = st.secrets["spreadsheet"]
 
 # Create a connection object using Streamlit connections
 conn = st.connection("gsheets", type=GSheetsConnection)
